@@ -1,0 +1,38 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+</head>
+<body>
+    <h3>Socket</h3>
+    <button type="button" onclick="handler();">Me</button>
+</body>
+</html>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf-8">
+    //socket.emit envia dado para o servidor
+
+    //"https://4f760e06.ngrok.io"
+
+    let socket = io();
+    //Aqui vai pro cliente
+    socket.on('message', function(data) {
+         console.log('message', data)
+    });
+
+    socket.on('jsonn', function(data) {
+         console.log('jsonn', data)
+    });
+
+    //Aqui vai pro servidor
+    socket.on('connect', function() {
+        socket.emit('message', {device: 'Transponder', ip: 'xxx', port: 'xxx'});
+        socket.emit('jsonn', JSON.stringify({'port': 'xxx', 'ip': 'xxx', 'status': 'xxx', 'type': 'transponder interpretado'}));
+        socket.emit('jsonn', JSON.stringify({'port': 'xxx', 'ip': 'xxx', 'status': 'xxx', 'type': 'transponder compilado'}));
+        console.log('passou');
+    });
+
+
+</script>
