@@ -14,9 +14,6 @@ clients = []
 def socket():
     return render_template("index.html")
 
-# @socketio.on("connected")
-# def connected():
-
 def ack():
     return "message was received!"
 
@@ -48,7 +45,6 @@ def handle_json(data):
 
 @socketio.on('disconnect')
 def test_disconnect():
-    print("Entrou 2")
     client_sid = request.sid
     remove_client_on_server(client_sid)
     print('Client disconnected')
